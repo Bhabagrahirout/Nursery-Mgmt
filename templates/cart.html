@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Products</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='image/Logo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='images/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <style>
+    #btn {
+      color: white;
+      background-color: rgb(255, 90, 148);
+      /* border-radius:5px; */
+      border: none
+    }
+
+    #btn:hover {
+      background-color: rgb(255, 20, 126);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- navbar -->
+  {% include 'nav.html'%}
+
+  <!-- Product show -->
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 mx-auto">
+          <p class="fs-1 me-5 bg-warning text-center" style="color:rgb(255, 0, 162)">YOURS WISH PRODUCTS</p>
+        </div>
+      </div>
+    </div>
+
+      {% set p_id = request.args.get('p_id') | int %} <!-- convert to integer -->
+      {% if p_id %}
+      {% for product in data %}
+      {% if product[0]==p_id %}
+      <div class="container d-flex" >
+        <div class="col-md-6 text-end me-4">
+          <img src="{{ url_for('static', filename=product[3]) }}" width="50%" height="240px" alt="error" >
+        </div>
+        <div class=" col-md-6 me-2">
+          <b>{{ product[1] }}</b></br>{{ product[4] }} <br>{{product[2]}} <br>
+        <label>Quantity:</label>
+        <input type="number" min="0" max="10" name="quantity" style="display: inline" />
+        <br><br>
+        <!-- <a class="btn btn-md btn-primary" id="btn" name="add_to_cart" value="Add to cart"
+          href="#remove">Remove</a> -->
+          <a class="btn btn-md btn-primary" id="btn" name="add_to_cart" value="Add to cart"
+          href="/order?p_id={{product[0]}}">order</a>
+        </div>
+        </div>
+      </div>
+      {%endif%}
+      {% endfor %}
+      {% else %}
+      <p>No product ID specified in the URL.</p>
+      {% endif %}
+    
+  </div>
+  
+  <div class="mt-1"> {% include 'footer.html'%}</div>
+ 
+  <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY Nursery</title>
+  <style>
+  .carousel-inner img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .product-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  .link{
+    color: rgb(116, 54, 28);
+    transition: color 0.3s ease;
+  }
+  .link:hover{
+    color: deeppink;
+  }
+  #btn{
+    background-color:hotpink;
+    border:none
+  }
+  #btn:hover{
+    background-color:deeppink
+  }
+  </style>
+</head>
+<body>
+<!-- navbar -->
+{% include 'nav.html'%}
+<!-- scrolling -->
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ url_for('static', filename='image/scroll/c1.png') }}" onclick="fun()" class="d-block w-100 h-auto" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="10000">
+        <img src="{{ url_for('static', filename='image/scroll/c2.png') }}" onclick="fun()" class="d-block w-100 h-auto" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="10000">
+        <img src="{{ url_for('static', filename='image/scroll/c3.png') }}" onclick="fun()" class="d-block w-100 h-auto" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<!-- Product -->
+<div class="container-fluid mt-4 " id="product" style="margin-bottom:20px;">
+  <h1 class="text-lg-center">Best Sellers</h1>
+  <div class="row row-cols-1 row-cols-md-5 g-4">
+ 
+    {% for product in data[:5] %}
+    <div class="col">
+        <div class="card h-70">
+            <img src="{{ url_for('static', filename=product[3]) }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ product[1] }}</h5>
+                <p class="card-text">Price: {{ product[4] }} </p>
+                <div class="d-grid gap-2">
+                    <a class="btn btn-primary" id="btn" href="/cart?p_id={{product[0]}}&quantity=1" role="button">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+  <a href="{{ url_for('product') }}" class="link text-decoration-none">Show All >>></a>
+  
+</div>
+
+  <!-- About-->
+  <div class="about bg-warning bg-opacity-50 pt-3  mt-0 text-dark" id="about">
+    <div class="container mx-100 ">
+      <h1 class="text-lg-center mt-0">About</h1>
+        <div class="card-body" style="padding:5px; margin-bottom:20px;">
+          <p>"Welcome to our nursery management platform! We're your go-to destination for premium nursery products and gardening essentials. Explore our diverse catalog, easily add items to your cart, and enjoy doorstep delivery. Committed to sustainability, we promote eco-friendly practices and quality products. Join us in fostering lush greenery and creating vibrant spaces, whether indoors or outdoors. At my_nursery , we're passionate about nurturing your love for plants and supporting your gardening journey. Let's grow together Passionate about fostering lush greenery, we are dedicated to supporting your love for plants and providing the necessary tools for successful gardening. Our About section encapsulates our commitment to creating vibrant spaces, whether it's for your home or office. Join us in cultivating a greener and healthier environment.
+            In addition to our wide range of products, we offer a visually appealing website with a carousel showcasing our featured items and special offers. Explore our platform, grow with us, and let's nurture the love for plants together! Thank you for choosing our Nursery Management Platform as your go-to source for all things gardening.!"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NEWS -->
+  <div >
+    <img src="{{ url_for('static', filename='image/para.png') }}" width="100%" height="500px"   alt="...">
+  </div>
+  <!-- footerpage -->
+   {% include 'footer.html'%} 
+  <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+
+{{data}}   // show all in a array
+<ul>
+    {% for product in data %}
+        <li>
+            <strong>ID:</strong> {{ product[0]. }}<br>
+            <strong>Name:</strong> {{ product[1] }}<br>
+            <strong>Price:</strong> {{ product[2] }}<br>
+            <!-- Add more fields as needed -->
+        </li>
+        <hr>
+    {% endfor %}
+</ul>
+{% for product in data %}
+  {% set name=product[1] %}
+  {{"your pname is" +name}}
+  {% endfor %}
+  <div class="col">
+    <div class="card h-70">
+      <img src="{{ url_for('static', filename='images/black/c2.avif') }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Fragrant Plants</h5>
+        <p class="card-text">Price: ₹500/-</p>
+        <div class="d-grid gap-2">
+          <a class="btn btn-primary" id="btn" href="#" role="button">Add to cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-70">
+      <img src="{{ url_for('static', filename='images/black/c3.avif') }}" height="280px" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"> Indoor Plants</h5>
+        <p class="card-text">Price: ₹199/-</p>
+        <div class="d-grid gap-2">
+          <a class="btn btn-primary" id="btn" href="#" role="button">Add to cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-70">
+      <img src="{{ url_for('static', filename='images/black/c4.avif') }}" height="280" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">oxygen enriching plant</h5>
+        <p class="card-text">Price: ₹1999/-</p>
+        <div class="d-grid gap-2">
+          <a class="btn btn-primary" id="btn" href="#" role="button">Add to cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-70">
+    <img src="{{ url_for('static', filename='images/black/c5.avif') }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Healthy Home-Office</h5>
+        <p class="card-text">Price: ₹199/-</p>
+        <div class="d-grid gap-2">
+          <a class="btn btn-primary" id="btn" href="#" role="button">Add to cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="your_photo_url.jpg" alt="Your Photo" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <h2>Your Title</h2>
+            <p>Your text goes here. You can add as much content as needed.</p>
+        </div>
+    </div>
+</div>
